@@ -8,6 +8,7 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, '../dist'),
         clean: true,
+        publicPath: '/dist/'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -33,9 +34,13 @@ module.exports = {
         ]
     },
     devServer: {
+        historyApiFallback: {
+            rewrites: [
+              { from: /^\//, to: '/dist/index.html' },
+            ],
+        },
         compress: true,
-        contentBase: path.resolve(__dirname, '../dist'),
-        historyApiFallback: true,
+        // contentBase: path.resolve(__dirname, '../dist'),
         hot: true,
     },
 };

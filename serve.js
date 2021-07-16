@@ -4,7 +4,8 @@ const Router = require('koa-router')
 const app = new Koa();
 const ReactDOMServer = require('react-dom/server');
 const App = require('./src/App').default;
-const staticM = require('koa-static');
+// const staticM = require('koa-static');
+const staticM = require('koa-static-router')
 const fs = require('fs');
 import React from 'react'
 
@@ -35,7 +36,7 @@ console.log(htmlString,'----')
 
 // response
 
-router.get('/ssr', async (ctx) => {
+router.get('/', async (ctx) => {
     const htmlText = fs.readFileSync(path.resolve(__dirname, 'dist/index.html'),'utf-8')
     ctx.type = 'html';
     console.log(htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`))
@@ -43,7 +44,13 @@ router.get('/ssr', async (ctx) => {
 })
 
 app.use(router.routes()).use(router.allowedMethods());
-app.use(staticM(path.resolve(__dirname, 'dist')))
+
+// 静态服务
+app.use(staticM({
+    dir:'dist',    
+    router:'/dist'    
+}))
+
 app.listen(3099,() =>{
     console.log('port 3099')
 });

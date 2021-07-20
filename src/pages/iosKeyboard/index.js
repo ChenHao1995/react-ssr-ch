@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './index.scss'
+// import './index.scss'
 export default class IOSKeyboard extends Component {
-    state={
-        height:window.innerHeight
+    state = {
+        height:100
     }
   
     constructor(){
@@ -13,7 +13,7 @@ export default class IOSKeyboard extends Component {
     }
     inputFocus = () =>{
         this.setState({
-            height:window.innerHeight
+            height:100
         })
     }
   

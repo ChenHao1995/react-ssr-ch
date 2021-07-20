@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
-import IOSKeyboard from './pages/iosKeyboard'
-
-export default class App extends Component {
+import { withRouter } from "react-router";
+ class App extends Component {
     state = {
       show:1
     }
@@ -26,25 +19,23 @@ export default class App extends Component {
 
       })
     }
+    go = () => {
+      console.log(this.props)
+      this.props.history.push('/ios-keyboard')
+
+    }
 
     render() {
-      return <Router>
-      <div>
+      return <div>
+        <a onClick={this.go}>跳转</a>
         <h1> <button onClick={this.click}>点击</button>{this.state.show}</h1>
-        <Switch>
-          <Route path="/ios-keyboard">
-            <IOSKeyboard />
-          </Route>
-          {/* <Route path="/users">
-            <Users />
-          </Route> */}
-        
-        </Switch>
       </div>
-      </Router>
+     
 
 
        
     }
 }
+
+export default withRouter(App)
 

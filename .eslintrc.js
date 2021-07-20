@@ -15,7 +15,7 @@ module.exports = {
     '__DEVLOGGER__': true
   },
   //"extends": ["eslint:recommended","plugin:react/recommended"],
-  'extends': ['plugin:react/recommended'],
+  // 'extends': ['plugin:react/recommended'],
   'parserOptions': {
     'sourceType': 'module',
     'ecmaVersion': 7,

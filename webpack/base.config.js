@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: './src/index.js',
@@ -17,7 +18,8 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin({
             // Options...
-        })          
+        }),
+        new MiniCssExtractPlugin() 
     ],
     module:{
         rules:[
@@ -30,10 +32,30 @@ module.exports = {
                    
                   }
                 }
-              }
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                // use: [
+                //   // 将 JS 字符串生成为 style 节点
+                //   'style-loader',
+                //   // 将 CSS 转化成 CommonJS 模块
+                //   'css-loader',
+                //   // 将 Sass 编译成 CSS
+                //   'sass-loader',
+                // ],
+                use: [
+                  MiniCssExtractPlugin.loader,
+                  // 将 CSS 转化成 CommonJS 模块
+                  'css-loader',
+                  // 将 Sass 编译成 CSS
+                  'sass-loader',
+                ],
+              },
         ]
     },
+    devtool: 'inline-source-map',
     devServer: {
+        host: '0.0.0.0',
         historyApiFallback: {
             rewrites: [
               { from: /^\//, to: '/dist/index.html' },

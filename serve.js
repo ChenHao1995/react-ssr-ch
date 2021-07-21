@@ -26,7 +26,7 @@ router.get(/^\//, async (ctx,next) => {
             <App/>
             <Switch>
                 {routerConfig.map((router) =>{
-                    return  <Route path={router.path} component={require(path.resolve('./src',router.conponentPath)).default}>
+                    return  <Route path={router.path} component={require(path.resolve('./src',router.componentPath)).default}>
                     </Route>
                 })}
             </Switch>
@@ -44,8 +44,8 @@ router.get(/^\//, async (ctx,next) => {
 
 // 静态服务
 app.use(staticM({
-    dir:'dist',    
-    router:'/dist'    
+    dir:'dist', 
+    router:'/dist'
 }))
 
 app.use(router.routes()).use(router.allowedMethods());

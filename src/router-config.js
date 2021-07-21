@@ -1,7 +1,8 @@
 const routerConfig = [
     {
         path:'/ios-keyboard',
-        conponentPath:'./pages/iosKeyboard'
+        componentPath:'./pages/iosKeyboard',
+        component:() => import('./pages/iosKeyboard')
     }
 ]
 

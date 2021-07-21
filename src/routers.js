@@ -15,8 +15,8 @@ export default function Routers (){
   return (<Router history={history}>
    <App/>
     <Switch>
-      <Route path="/ios-keyboard" component={ansycComponent(() => import('./pages/iosKeyboard'))}>
-      </Route>
+      {routerConfig.map((r) => <Route path={r.path} component={ansycComponent(r.component)}>
+      </Route>)}
       {/* <Route path="/users">
         <Users />
       </Route> */}

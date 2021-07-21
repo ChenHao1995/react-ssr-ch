@@ -3,22 +3,35 @@ const path = require('path');
 const Router = require('koa-router')
 const app = new Koa();
 const ReactDOMServer = require('react-dom/server');
-const Routers = require('./src/routers-serve').default;
+// const Routers = require('./src/routers-serve').default;
 // const staticM = require('koa-static');
 const staticM = require('koa-static-router')
 const fs = require('fs');
-import React from 'react'
+import React,{ Component } from 'react'
+import {
+    StaticRouter,
+    Switch,
+    Route,
+  } from 'react-router-dom'
+import App from './src/App'
+import routerConfig from './src/router-config'
 
 const router = new Router()
-
-console.log(Routers)
-
-
 
 router.get(/^\//, async (ctx,next) => {
     // console.log(ctx)
     if(!ctx.request.url.includes('dist')){
-        const htmlString = ReactDOMServer.renderToString(<Routers url={ctx.request.url} content={{window:{}}}/>)
+        const htmlString = ReactDOMServer.renderToString(
+        <StaticRouter location={ctx.request.url} context={{}}>
+            <App/>
+            <Switch>
+                {routerConfig.map((router) =>{
+                    return  <Route path={router.path} component={require(path.resolve('./src',router.conponentPath)).default}>
+                    </Route>
+                })}
+            </Switch>
+        </StaticRouter>
+        )
         const htmlText = fs.readFileSync(path.resolve(__dirname, 'dist/index.html'),'utf-8')
         ctx.type = 'html';
         // console.log(htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`))

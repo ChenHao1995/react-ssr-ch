@@ -15,6 +15,7 @@ import {
   } from 'react-router-dom'
 import App from './src/App'
 import routerConfig from './src/router-config'
+import StrongRoute from './src/strongRouter'
 
 const router = new Router()
 
@@ -26,13 +27,14 @@ router.get(/^\//, async (ctx,next) => {
             <App/>
             <Switch>
                 {routerConfig.map((router) =>{
-                    return  <Route path={router.path} component={require(path.resolve('./src',router.componentPath)).default}>
-                    </Route>
+                    console.log(router)
+                    return  <StrongRoute routerConfig={router} isSsr={true}>
+                    </StrongRoute>
                 })}
             </Switch>
         </StaticRouter>
         )
-        const htmlText = fs.readFileSync(path.resolve(__dirname, 'dist/index.html'),'utf-8')
+        const htmlText = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'),'utf-8')
         ctx.type = 'html';
         // console.log(htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`))
         ctx.body =htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`);

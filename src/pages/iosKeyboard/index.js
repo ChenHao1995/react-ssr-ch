@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import StrongRoute from '@src/strongRouter'
 // import './index.scss'
 export default class IOSKeyboard extends Component {
     state = {
@@ -9,6 +10,7 @@ export default class IOSKeyboard extends Component {
       super()
     }
     componentDidMount(){
+      console.log(this.props)
 
     }
     inputFocus = () =>{
@@ -19,10 +21,10 @@ export default class IOSKeyboard extends Component {
   
 
     render() {
-      return <div><input onFocus={this.inputFocus}/> <span>{this.state.height}</span><div className="bottom-fixed">底部</div></div>
-
-
-       
+      return <div>
+        <input onFocus={this.inputFocus}/> <span>{this.state.height}</span><div className="bottom-fixed">底部</div>
+        {this.props.routers.map((r) =><StrongRoute routerConfig={r} isSsr={!!this.props.isSsr}/>)}
+      </div> 
     }
 }
 

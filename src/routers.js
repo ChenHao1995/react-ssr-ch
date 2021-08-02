@@ -7,19 +7,16 @@ import {
 import React, { Component } from 'react'
 import { createBrowserHistory } from "history";
 import App from './App'
-import ansycComponent from './components/AsyncComponent'
+
 import routerConfig from './router-config'
+import StrongRoute from './strongRouter'
 
 const history = createBrowserHistory();
 export default function Routers (){
   return (<Router history={history}>
    <App/>
     <Switch>
-      {routerConfig.map((r) => <Route path={r.path} component={ansycComponent(r.component)}>
-      </Route>)}
-      {/* <Route path="/users">
-        <Users />
-      </Route> */}
+      {routerConfig.map((r) => <StrongRoute routerConfig={r}/>)}
     </Switch>
   </Router>)
 }

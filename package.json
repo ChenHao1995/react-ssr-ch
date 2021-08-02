@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "webpack --config ./webpack/base.config.js",
+    "build-client":"webpack --config ./webpack/base.config.js",
     "dev": "webpack serve --open --config ./webpack/base.config.js",
-    "dev:ssr": "npm run prod && babel-node --config-file ./babel.config.js serve.js"
+    "build-serve": "webpack --config ./webpack/serve.config.js",
+    "prod-serve": "npm run build-client && npm run build-serve && node ./serve-dist/serve.js"
   },
   "repository": {
     "type": "git",
@@ -20,19 +21,23 @@
   },
   "homepage": "https://github.com/ChenHao1995/react-ssr-ch#readme",
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
     "@babel/node": "^7.14.7",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.9",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.24.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.1.0",
     "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.1.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"

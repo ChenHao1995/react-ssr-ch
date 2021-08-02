@@ -4,23 +4,20 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: './src/index.js',
+    mode:'production',
+    entry: './serve.js',
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, '../dist'),
-        clean: true,
-        publicPath: '/dist/'
+        filename: 'serve.js',
+        path: path.resolve(__dirname, '../serve-dist'),
+        clean: true
     },
     plugins: [
-        new HtmlWebpackPlugin({
-          title: 'react-ssr',
-          template: path.resolve(__dirname, './index.html')
-        }),
-        new webpack.HotModuleReplacementPlugin({
-            // Options...
-        }),
-        new MiniCssExtractPlugin() 
+      new MiniCssExtractPlugin() ,
+      // new webpack.DefinePlugin({
+      //  isSsr: true
+      // })
     ],
+    devtool: 'inline-source-map',
     module:{
         rules:[
             {
@@ -29,7 +26,7 @@ module.exports = {
                 use: {
                   loader: 'babel-loader',
                   options: {
-                   
+                    configFile:path.resolve(__dirname,'../babel.config.js')
                   }
                 }
             },
@@ -64,27 +61,11 @@ module.exports = {
             }
         ]
     },
-    devtool: 'inline-source-map',
-    devServer: {
-        host: '0.0.0.0',
-        historyApiFallback: {
-            rewrites: [
-              { from: /^\//, to: '/dist/index.html' },
-            ],
-        },
-        compress: true,
-        // contentBase: path.resolve(__dirname, '../dist'),
-        hot: true,
-    },
-    optimization:{
-      splitChunks:{
-        minSize:0
-      }
-    },
     resolve:{
       alias:{
         "@src": path.resolve('src')
       }
-    }
+    },
+    target:'node'
 };
   

@@ -4,9 +4,8 @@
   "description": "react-ssr",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-client":"webpack --config ./webpack/base.config.js",
-    "dev": "webpack serve --open --config ./webpack/base.config.js",
+    "build-client": "webpack --config ./webpack/client.config.js",
+    "dev": "webpack serve --open --config ./webpack/client.config.js",
     "build-serve": "webpack --config ./webpack/serve.config.js",
     "prod-serve": "npm run build-client && npm run build-serve && node ./serve-dist/serve.js"
   },
@@ -40,7 +39,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",

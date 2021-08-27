@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-client": "webpack --config ./webpack/client.config.js",
-    "dev": "webpack serve --open --config ./webpack/client.config.js",
+    "dev": "webpack serve  --config ./webpack/client.config.js",
     "build-serve": "webpack --config ./webpack/serve.config.js",
     "prod-serve": "npm run build-client && npm run build-serve && node ./serve-dist/serve.js"
   },
@@ -37,7 +37,7 @@
     "sass-loader": "^12.1.0",
     "style-loader": "^3.1.0",
     "url-loader": "^4.1.1",
-    "webpack": "^5.45.1",
+    "webpack": "^5.51.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"

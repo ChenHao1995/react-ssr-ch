@@ -9,11 +9,11 @@ if (!window.__POWERED_BY_QIANKUN__) {
   )
 }
 
-export  function bootstrap() {
+export async function bootstrap() {
   console.log('[react16] react app bootstraped')
 }
   
-export  function mount(props) {
+export async function mount(props) {
   console.log('[react16] props from main framework', props)
   ReactDom.hydrate(
     <Routers />,
@@ -21,14 +21,12 @@ export  function mount(props) {
   )
 }
   
-export  function unmount(props) {
+export async function unmount(props) {
   const { container } = props
   ReactDom.unmountComponentAtNode(container ? container.querySelector('#root') : document.querySelector('#root'))
 }
 
-export default function chen(){console.log('---')}
-
-// window['react-demo'] = {
+// window['react-ssr-ch'] = {
 //   bootstrap,
 //   mount,
 //   unmount

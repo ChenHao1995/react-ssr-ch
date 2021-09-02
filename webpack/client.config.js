@@ -7,7 +7,12 @@ const baseConfig = require('./base.config')
 const clientConfig = {
   entry: './src/index.js',
   output: {
-      filename: '[name].bundle.js',
+      library: {
+        name:'react-ssr-ch',
+        type:'umd'
+      },
+      // libraryTarget: 'umd',
+      filename: 'react-ssr-ch.js',
       path: path.resolve(__dirname, '../dist'),
       clean: true,
       publicPath: '/dist/'

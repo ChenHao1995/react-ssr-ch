@@ -21,7 +21,7 @@ import { withRouter } from "react-router";
     }
     go = () => {
       console.log(this.props)
-      this.props.history.push('/ios-keyboard')
+      this.props.history.push('/react-ssr-ch')
 
     }
 

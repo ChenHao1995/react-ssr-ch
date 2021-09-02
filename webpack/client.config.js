@@ -11,6 +11,7 @@ const clientConfig = {
         name:'react-ssr-ch',
         type:'umd'
       },
+      globalObject: 'window',
       // libraryTarget: 'umd',
       filename: 'react-ssr-ch.js',
       path: path.resolve(__dirname, '../dist'),

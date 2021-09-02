@@ -3,14 +3,14 @@ import ReactDom from 'react-dom';
 import Routers from './routers';
 import singleSpaReact, {SingleSpaContext} from 'single-spa-react';
 
-ReactDom.hydrate(
+ReactDom.render(
     <Routers />,
     document.getElementById('root')
 )
 
 const reactLifecycles = singleSpaReact({
   React,
-  ReactDom,
+  ReactDOM:ReactDom,
   rootComponent:Routers,
   errorBoundary(err, info, props) {
     // https://reactjs.org/docs/error-boundaries.html
@@ -21,6 +21,6 @@ const reactLifecycles = singleSpaReact({
   domElementGetter: () => document.getElementById('react-ssr-ch')
 });
 
-export const { bootstrap } = reactLifecycles;
+export const {bootstrap} = reactLifecycles
 export const { mount } = reactLifecycles;
 export const { unmount } = reactLifecycles;

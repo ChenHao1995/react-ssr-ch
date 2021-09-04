@@ -12,6 +12,7 @@ const clientConfig = {
       type:'umd'
     },
     globalObject: 'window',
+    chunkLoadingGlobal:'webpackJsonp_react-ssr-ch',
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,

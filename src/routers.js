@@ -1,22 +1,22 @@
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-  } from 'react-router-dom'
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom'
 import React, { Component } from 'react'
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history'
 import App from './App'
 
 import routerConfig from './router-config'
 import StrongRoute from './strongRouter'
 
-const history = createBrowserHistory();
+const history = createBrowserHistory()
 export default function Routers (){
   return (<Router history={history}>
-   <App/>
+    {/* <App/> */}
     <Switch>
-      {routerConfig.map((r) => <StrongRoute routerConfig={r}/>)}
+      {routerConfig.map((r) => <StrongRoute {...r}/>)}
     </Switch>
   </Router>)
 }

@@ -17,7 +17,7 @@ export async function mount(props) {
   console.log('[react16] props from main framework', props)
   ReactDom.render(
     <Routers />,
-    props.container?props.container.getElementById('root'):
+    props.container&&props.container.getElementById?props.container.getElementById('root'):
       document.getElementById('root')
   )
 }

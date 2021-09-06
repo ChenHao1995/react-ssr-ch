@@ -1,39 +1,26 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Routers from './routers'
+import singleSpaReact, {SingleSpaContext} from 'single-spa-react'
 
-if (!window.__POWERED_BY_QIANKUN__) {
-  ReactDom.hydrate(
-    <Routers />,
-    document.getElementById('root')
-  )
-}
+ReactDom.render(
+  <Routers />,
+  document.getElementById('root')
+)
 
-export async function bootstrap() {
-  console.log('[react16] react app bootstraped')
-}
-  
-export async function mount(props) {
-  console.log('[react16] props from main framework', props)
-  props.onGlobalStateChange((state, prev) => {
-    // state: 变更后的状态; prev 变更前的状态
-    console.log(state, prev,'----------onGlobalStateChange---zhihuDemo------')
-  })
-  props.setGlobalState({childrenName:'zhihuDemo'})
-  ReactDom.render(
-    <Routers />,
-    props.container&&props.container.getElementById?props.container.getElementById('root'):
-      document.getElementById('root')
-  )
-}
-  
-export async function unmount(props) {
-  const { container } = props
-  ReactDom.unmountComponentAtNode(container ? container.querySelector('#root') : document.querySelector('#root'))
-}
+const reactLifecycles = singleSpaReact({
+  React,
+  ReactDOM:ReactDom,
+  rootComponent:Routers,
+  errorBoundary(err, info, props) {
+    // https://reactjs.org/docs/error-boundaries.html
+    return (
+      <div>This renders when a catastrophic error occurs</div>
+    )
+  },
+  domElementGetter: () => document.getElementById('react-ssr-ch')
+})
 
-// window['react-ssr-ch'] = {
-//   bootstrap,
-//   mount,
-//   unmount
-// }
+export const {bootstrap} = reactLifecycles
+export const { mount } = reactLifecycles
+export const { unmount } = reactLifecycles

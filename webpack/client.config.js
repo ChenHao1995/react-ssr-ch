@@ -13,7 +13,7 @@ const clientConfig = {
     },
     globalObject: 'window',
     chunkLoadingGlobal:'webpackJsonp_react-ssr-ch',
-    filename: '[name].bundle.js',
+    filename: 'react-ssr-ch.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
     publicPath: '/dist/'

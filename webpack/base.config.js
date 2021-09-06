@@ -1,9 +1,9 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   plugins: [
-    new MiniCssExtractPlugin()
+    // new MiniCssExtractPlugin()
   ],
   module:{
     rules:[
@@ -28,8 +28,9 @@ module.exports = {
         //   'sass-loader',
         // ],
         use: [
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
           // 将 CSS 转化成 CommonJS 模块
+          'style-loader',
           'css-loader',
           // 将 Sass 编译成 CSS
           'sass-loader',

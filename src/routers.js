@@ -17,7 +17,7 @@ export default function Routers (){
   return (
     <MemoryRouter 
       initialEntries={['/zhihu-demo', '/zhihu-header']}
-      initialIndex={1}
+      initialIndex={0}
     >
       {/* <App/> */}
       <Switch>

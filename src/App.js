@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { withRouter } from "react-router";
- class App extends Component {
+import { withRouter } from 'react-router'
+class App extends Component {
     state = {
       show:1
     }
@@ -10,25 +10,15 @@ import { withRouter } from "react-router";
     componentDidMount(){
 
     }
-    click = () => {
-      console.log('--')
-      this.setState((preState) =>{
-        return {
-          show:preState.show + 1
-        }
-
-      })
-    }
+   
     go = () => {
-      console.log(this.props)
-      this.props.history.push('/ios-keyboard')
+      this.props.history.push('/zhihu-header')
 
     }
 
     render() {
       return <div>
-        <a onClick={this.go}>跳转</a>
-        <h1> <button onClick={this.click}>点击</button>{this.state.show}</h1>
+        <a onClick={this.go}>跳转zhihu-header</a>
       </div>
      
 

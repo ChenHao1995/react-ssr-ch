@@ -10,7 +10,8 @@
         "allowJs":true,
         "sourceMap": true,
         "jsx":"preserve",
-        "outDir":"./tsdist"
+        "outDir":"./tsdist",
+        "paths": {"@src/*":["./src/*"]}
     },
     "files":["./src/App.tsx"]
 }

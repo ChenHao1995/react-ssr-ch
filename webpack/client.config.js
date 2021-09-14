@@ -32,6 +32,9 @@ const clientConfig = {
       compress: true,
       // contentBase: path.resolve(__dirname, '../dist'),
       hot: true,
+      client: {
+        overlay: false,
+      },
   },
   optimization:{
     splitChunks:{

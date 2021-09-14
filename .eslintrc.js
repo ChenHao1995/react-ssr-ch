@@ -29,10 +29,10 @@ module.exports = {
   'parser': 'babel-eslint',
   'rules': {
     // 'strict': 0,
-    // 'indent': ['error', 2, { 'SwitchCase': 1 }],
+    'indent': ['error', 2, { 'SwitchCase': 1 }],
     // 'linebreak-style': ['error', 'unix'],
-    // 'quotes': ['error', 'single'],
-    // 'semi': ['error', 'never'],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'never'],
     // 'no-console': 0,
     //"no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     // 'no-mixed-spaces-and-tabs': [0],
@@ -40,6 +40,5 @@ module.exports = {
     // 'react/display-name': 0,
     // 'react/no-deprecated': 0,
     // 'react/prop-types': [0],
-    // 'linebreak-styl': 0
   }   
 }

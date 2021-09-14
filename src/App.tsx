@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { withRouter } from "react-router";
- class App extends Component {
+import { withRouter } from 'react-router'
+class App extends Component<{[key:string]:any}> {
     state = {
       show:1
     }

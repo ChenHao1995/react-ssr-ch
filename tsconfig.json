@@ -1,0 +1,16 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+    ],
+    "compilerOptions":{
+        "baseUrl": ".",
+        "allowJs":true,
+        "sourceMap": true,
+        "jsx":"preserve",
+        "outDir":"./tsdist"
+    },
+    "files":["./src/App.tsx"]
+}

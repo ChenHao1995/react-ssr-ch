@@ -23,7 +23,8 @@ module.exports = {
       'globalReturn': true,
       'impliedStrict': true,
       'experimentalObjectRestSpread': true,
-      'jsx': true
+      'jsx': true,
+      'tsx': true
     }
   },
   'parser': 'babel-eslint',

@@ -13,6 +13,7 @@ import StrongRoute from './strongRouter'
 
 const history = createBrowserHistory()
 export default function Routers (){
+  // @ts-ignore
   return (<Router history={history}>
     <App/>
     <Switch>

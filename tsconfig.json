@@ -8,6 +8,7 @@
     "compilerOptions":{
         "baseUrl": ".",
         "allowJs":true,
+        "checkJs":true,
         "sourceMap": true,
         "jsx":"preserve",
         "outDir":"./tsdist",

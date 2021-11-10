@@ -1,11 +1,13 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const ConsolePlugin = require('../webpack-plugin/ConsolePlugin')
 
 module.exports = {
   mode:'production',
   plugins: [
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new ConsolePlugin()
   ],
   module:{
     rules:[
@@ -57,6 +59,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     // plugins: [new TsconfigPathsPlugin({ configFile:path.resolve(__dirname,'../tsconfig.json')})]
   },
-  stats:{}
+  stats:{},
+  recordsPath: path.join(__dirname, 'records.json'),
 }
   

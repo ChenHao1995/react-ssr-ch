@@ -6,23 +6,21 @@ import NewLine from '@src/pages/newLine'
 const routerConfig = [
   {
     path:'/ios-keyboard',
-    componentServe:IosKeyboard,
-    component:() => import('./pages/iosKeyboard'),
-    childrens: [{
+    component: IosKeyboard,
+    getServeData: IosKeyboard.getServeData,
+    routes: [{
       path:'/ios-keyboard/test-page-img',
-      componentServe:TestPageImg,
-      component:() => import('./pages/testPageImg'),
+      component: TestPageImg,
     }]
   },
   {
     path:'/demo',
-    componentServe:Demo,
-    component:() => import('@src/pages/demo'),
+    component: Demo,
+    // component: () => import('@src/pages/demo')
   },
   {
     path:'/new-line/:id',
-    componentServe: NewLine,
-    component:() => import('@src/pages/newLine'),
+    component: NewLine,
   }
 ]
 

@@ -10,6 +10,8 @@ import App from './App'
 
 import routerConfig from './router-config'
 import StrongRoute from './strongRouter'
+import serveRouterConfig from './serve-router-config'
+import ServeRouter from './serveRouter'
 
 const history = createBrowserHistory()
 export default function Routers (){
@@ -17,7 +19,7 @@ export default function Routers (){
   return (<Router history={history}>
     <App/>
     <Switch>
-      {routerConfig.map((r) => <StrongRoute {...r}/>)}
+      {serveRouterConfig.map((r) => <ServeRouter {...r}/>)}
     </Switch>
   </Router>)
 }

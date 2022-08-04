@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import StrongRoute from '@src/strongRouter'
+// import StrongRoute from '@src/strongRouter'
 import {
   withRouter
 } from 'react-router-dom'
@@ -33,4 +33,5 @@ class Demo extends Component {
     }
 }
 export default withRouter(Demo as any)
+
 

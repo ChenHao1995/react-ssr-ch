@@ -63,6 +63,7 @@ object-assign
 /*!
  * destroy
  * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015-2022 Douglas Christopher Wilson
  * MIT Licensed
  */
 
@@ -122,6 +123,7 @@ object-assign
 /*!
  * mime-db
  * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015-2022 Douglas Christopher Wilson
  * MIT Licensed
  */
 
@@ -186,6 +188,10 @@ object-assign
  * Copyright(c) 2014-2017 Douglas Christopher Wilson
  * MIT Licensed
  */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /** @license React v16.13.1
  * react-is.production.min.js

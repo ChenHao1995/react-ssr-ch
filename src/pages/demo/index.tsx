@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React,{ Component } from 'react'
 // import StrongRoute from '@src/strongRouter'
 import {
   withRouter
@@ -18,6 +18,7 @@ function keepWholeObject(wholeObject: Point):boolean {
 
 class Demo extends Component {
     state = {
+      data:1
      
     }
   
@@ -29,7 +30,9 @@ class Demo extends Component {
 
     }
     render(){
-      return 'Demo'
+      return <div>'Demo' {this.state.data} <div onClick={() => {
+        this.setState((preState) =>({data: preState.data + 1}))
+      }}>按钮</div></div>
     }
 }
 export default withRouter(Demo as any)

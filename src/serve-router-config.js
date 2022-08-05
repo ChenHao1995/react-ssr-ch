@@ -1,6 +1,6 @@
 import IosKeyboard from '@src/pages/iosKeyboard'
 import TestPageImg from '@src/pages/testPageImg'
-import Demo from '@src/pages/demo'
+// import Demo from '@src/pages/demo'
 import NewLine from '@src/pages/newLine'
 
 const routerConfig = [
@@ -15,8 +15,9 @@ const routerConfig = [
   },
   {
     path:'/demo',
-    component: Demo,
-    // component: () => import('@src/pages/demo')
+    // component: Demo,
+    isLazy: true,
+    component: () => import('@src/pages/demo')
   },
   {
     path:'/new-line/:id',

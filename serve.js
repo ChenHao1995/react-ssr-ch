@@ -45,7 +45,7 @@ router.get(/^\//, async (ctx,next) => {
     })
     await Promise.all(promises).then(data => {
       if(data && data[0]){
-        console.log('服务端返回数据',data[0])
+        console.log(`${serveDataConfig.path}:服务端返回数据`,data[0])
         serveDataConfig.data = data[0]
       }
     })
@@ -64,7 +64,7 @@ router.get(/^\//, async (ctx,next) => {
       </StaticRouter>
     )
     let htmlText = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'),'utf-8')
-    htmlText = htmlText.replace('<script id="__pre-server-data" type="application/json"></script>',`<script id="__pre-server-data" type="application/json">${JSON.stringify(serveDataConfig.data || {})}</script>`)
+    htmlText = htmlText.replace('<script id="__pre-server-data" type="application/json">{}</script>',`<script id="__pre-server-data" type="application/json">${JSON.stringify(serveDataConfig.data || {})}</script>`)
     ctx.type = 'html'
     // console.log(htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`))
     ctx.body =htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`)

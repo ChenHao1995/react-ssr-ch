@@ -43,31 +43,54 @@ router.get(/^\//, async (ctx,next) => {
       }
       return match
     })
-    await Promise.all(promises).then(data => {
-      if(data && data[0]){
-        console.log(`${serveDataConfig.path}:服务端返回数据`,data[0])
-        serveDataConfig.data = data[0]
-      }
+    // await Promise.all(promises).then(data => {
+    //   if(data && data[0]){
+    //     console.log(`${serveDataConfig.path}:服务端返回数据`,data[0])
+    //     serveDataConfig.data = data[0]
+    //   }
+    // })
+
+    let isDemotion = false
+    let timeoutCount = 3000
+    // 超时降级
+    const dataBack =  await new Promise(function (resolve,reject) {
+      setTimeout(() => {
+        reject({error:'timeout'})
+      },timeoutCount)
+      return Promise.all(promises).then(data => {
+        resolve(data[0])
+      })
+    }).catch(() => {
+      console.log('dataBack-----',dataBack)
+      isDemotion = true
     })
+    if(dataBack) {
+      console.log(`${serveDataConfig.path}:服务端返回数据`,dataBack)
+      serveDataConfig.data = dataBack
+    }
 
-
-    const htmlString = ReactDOMServer.renderToString(
-      <StaticRouter location={ctx.request.url} context={{}}>
-        <App/>
-        <Switch>
-          {serveRouterConfig.map((router) => {
-            console.log(router)
-            return  <ServeRouter {...router} serveData={serveDataConfig.data || null} isSsr={true}>
-            </ServeRouter>
-          })}
-        </Switch>
-      </StaticRouter>
-    )
     let htmlText = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'),'utf-8')
-    htmlText = htmlText.replace('<script id="__pre-server-data" type="application/json">{}</script>',`<script id="__pre-server-data" type="application/json">${JSON.stringify(serveDataConfig.data || {})}</script>`)
     ctx.type = 'html'
-    // console.log(htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`))
-    ctx.body =htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`)
+    
+    if(!isDemotion){
+      htmlText = htmlText.replace('<script id="__pre-server-data" type="application/json">{}</script>',`<script id="__pre-server-data" type="application/json">${JSON.stringify(serveDataConfig.data || {})}</script>`)
+      const htmlString = ReactDOMServer.renderToString(
+        <StaticRouter location={ctx.request.url} context={{}}>
+          <App/>
+          <Switch>
+            {serveRouterConfig.map((router) => {
+              console.log(router)
+              return  <ServeRouter {...router} serveData={serveDataConfig.data || null} isSsr={true}>
+              </ServeRouter>
+            })}
+          </Switch>
+        </StaticRouter>
+      )
+      ctx.body =htmlText.replace('<div id="root"></div>',`<div id="root">${htmlString}</div>`)
+    }else {
+      ctx.body = htmlText
+    }
+    
   } else {
     console.log('--dist--路径-----',ctx.request.url)
     next()
